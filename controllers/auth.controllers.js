@@ -191,7 +191,7 @@ module.exports = {
 
     notificationPage: async (req, res, next) => {
         try {
-            const notifications = await prisma.notification.findMany();
+            const notifications = await prisma.notif.findMany();
             res.render('notification', { notifications });
         } catch (error) {
             Sentry.captureException(error);

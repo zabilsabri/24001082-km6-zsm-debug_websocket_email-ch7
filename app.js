@@ -41,4 +41,18 @@ app.use((req, res, next) => {
     });
 });
 
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    // subscribe topic chat
+    socket.on('notification', (msg) => {
+        console.log('server receive:', msg);
+        io.emit('notification', msg); // mengirimkan chat ke semua user yang terhubung
+    });
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
 module.exports = app;
