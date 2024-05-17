@@ -53,7 +53,7 @@ module.exports = {
                 }
             });
 
-            io.emit(`notification`, newNotification);
+            // io.emit(`notification`, newNotification);
 
             return res.status(201).json({
                 status: true,
