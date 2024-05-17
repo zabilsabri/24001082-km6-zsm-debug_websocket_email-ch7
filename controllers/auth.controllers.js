@@ -48,7 +48,8 @@ module.exports = {
             const notification = await prisma.notif.create({
                 data: {
                     title: 'New User Registered',
-                    message: `${user.name} has registered with email ${user.email}`
+                    content: `${user.name} has registered with email ${user.email}`,
+                    userId: user.id
                 }
             });
 
