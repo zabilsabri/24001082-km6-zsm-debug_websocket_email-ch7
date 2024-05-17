@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        nav,
+        main,
+        footer {
+            margin: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2>Notification list:</h2>
+        <ul id="notification-list">
+            <% notifications.forEach(item=>{ %>
+                <li>
+                    <b style="color: gray;">
+                        <%=item.title%>
+                    </b>
+                    <p style="color: gray;">
+                        <%=item.body%>
+                    </p>
+                </li>
+                <% }) %>
+        </ul>
+    </main>
+
+    <script src=" /socket.io/socket.io.js">
+    </script>
+    <script>
+        let socket = io();
+        let notifications = document.getElementById('notification-list');
+
+        socket.on(`notification`, notif => {
+            console.log(notif);
+            let item = document.createElement('li');
+            item.innerHTML = `
+            <b>${notif.title}</b>
+            <p>${notif.body}</p>
+            `;
+            notifications.append(item);
+        })
+    </script>
+
+</body>
+
+</html>
