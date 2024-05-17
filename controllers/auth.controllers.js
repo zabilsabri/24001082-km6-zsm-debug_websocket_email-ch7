@@ -45,7 +45,7 @@ module.exports = {
             delete user.password;
 
             // Create notification
-            const notification = await prisma.notification.create({
+            const notification = await prisma.notif.create({
                 data: {
                     title: 'New User Registered',
                     message: `${user.name} has registered with email ${user.email}`
